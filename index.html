@@ -7,12 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0b0c10;
-            --text-main: #c5c6c7;
+            /* Kért színpaletta */
+            --color-1: #780116; /* Mély bordó */
+            --color-2: #C32F27; /* Vörös */
+            --color-3: #D8572A; /* Rozsdavörös */
+            --color-4: #DB7C26; /* Narancs */
+            --color-5: #F7B538; /* Sárga */
+            
+            --bg-color: #0d0404; /* Nagyon sötét, meleg tónusú háttér */
+            --text-main: #e8e0e0;
             --text-light: #ffffff;
-            --accent-1: #66fcf1; /* Neon cyan */
-            --accent-2: #45a29e; /* Muted cyan */
-            --accent-3: #8a2be2; /* Purple */
         }
 
         * {
@@ -26,40 +30,40 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            /* Scroll snapping setup */
             height: 100vh;
             overflow-y: scroll;
             scroll-snap-type: y mandatory;
             scroll-behavior: smooth;
         }
 
-        /* Animated Background Elements */
+        /* Dinamikus háttér */
         .bg-shapes {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -1;
             overflow: hidden;
-            background: radial-gradient(circle at 15% 50%, rgba(102, 252, 241, 0.05), transparent 50%),
-                        radial-gradient(circle at 85% 30%, rgba(138, 43, 226, 0.05), transparent 50%);
+            background: radial-gradient(circle at 10% 80%, rgba(120, 1, 22, 0.15), transparent 60%),
+                        radial-gradient(circle at 90% 20%, rgba(219, 124, 38, 0.1), transparent 50%);
         }
 
         .blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.5;
-            animation: float 20s infinite alternate;
+            filter: blur(90px);
+            opacity: 0.4;
+            animation: float 25s infinite alternate;
         }
 
-        .blob-1 { width: 400px; height: 400px; background: var(--accent-1); top: -100px; left: -100px; }
-        .blob-2 { width: 500px; height: 500px; background: var(--accent-3); bottom: -200px; right: -100px; animation-delay: -10s; }
+        .blob-1 { width: 450px; height: 450px; background: var(--color-1); top: -100px; left: -100px; }
+        .blob-2 { width: 550px; height: 550px; background: var(--color-4); bottom: -200px; right: -100px; animation-delay: -12s; }
+        .blob-3 { width: 300px; height: 300px; background: var(--color-3); top: 40%; left: 40%; animation-delay: -5s; opacity: 0.2; }
 
         @keyframes float {
             0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(50px, 50px) scale(1.1); }
+            100% { transform: translate(60px, 80px) scale(1.15); }
         }
 
-        /* Sections */
+        /* Szekciók */
         section {
             height: 100vh;
             width: 100vw;
@@ -72,17 +76,17 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             width: 100%;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
+            grid-template-columns: 1fr;
+            gap: 40px;
             align-items: center;
+            max-height: 90vh;
         }
 
-        .full-width {
-            grid-template-columns: 1fr;
-            text-align: center;
+        .two-cols {
+            grid-template-columns: 1fr 1fr;
         }
 
         h1, h2, h3 {
@@ -90,81 +94,90 @@
             color: var(--text-light);
         }
 
-        h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -1px; }
-        h1 span { color: var(--accent-1); }
+        h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
+        h1 span { color: var(--color-5); }
         
-        h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 30px; position: relative; display: inline-block; }
-        h2::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 50px; height: 4px; background: var(--accent-1); transition: width 0.5s ease; }
+        h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 25px; position: relative; display: inline-block; color: var(--color-5); }
+        h2::after { content: ''; position: absolute; left: 0; bottom: -8px; width: 50px; height: 3px; background: var(--color-3); transition: width 0.8s ease; }
         .in-view h2::after { width: 100%; }
 
-        p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px; }
+        p { font-size: 1.05rem; line-height: 1.8; margin-bottom: 15px; text-align: justify; }
 
-        /* Glassmorphism Cards */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+        /* Glassmorphism panelek nagyobb szöveghez */
+        .text-panel {
+            background: rgba(30, 10, 10, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(247, 181, 56, 0.15);
+            border-left: 4px solid var(--color-4);
+            border-radius: 15px;
+            padding: 35px 45px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(40px);
             transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 75vh;
+            overflow-y: auto;
         }
 
-        .in-view .glass-card {
+        .text-panel::-webkit-scrollbar { width: 6px; }
+        .text-panel::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); border-radius: 10px; }
+        .text-panel::-webkit-scrollbar-thumb { background: var(--color-2); border-radius: 10px; }
+
+        .in-view .text-panel {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Stat numbers */
+        /* Számok és kiemelések */
         .stat-number {
             font-family: 'Montserrat', sans-serif;
-            font-size: 5rem;
+            font-size: 4.5rem;
             font-weight: 800;
-            background: -webkit-linear-gradient(45deg, var(--accent-1), var(--accent-3));
+            background: -webkit-linear-gradient(45deg, var(--color-5), var(--color-3));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: block;
         }
 
-        /* Fancy Tooltips */
+        /* Interaktív fogalmak (Tooltip) */
         .tooltip-word {
-            color: var(--accent-1);
+            color: var(--color-5);
             font-weight: 600;
             position: relative;
             cursor: pointer;
-            border-bottom: 1px dashed var(--accent-1);
+            border-bottom: 1px dashed var(--color-5);
             transition: color 0.3s;
         }
 
         .tooltip-word:hover {
-            color: var(--text-light);
+            color: #fff;
+            border-bottom-color: #fff;
         }
 
         .tooltip-box {
             position: absolute;
-            bottom: 150%;
+            bottom: 140%;
             left: 50%;
             transform: translateX(-50%) translateY(10px);
-            width: 300px;
-            background: #1f2833;
+            width: 320px;
+            background: var(--color-1);
             color: #fff;
             padding: 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
             font-weight: 400;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid var(--accent-1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            border: 1px solid var(--color-3);
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 100;
             pointer-events: none;
             text-align: left;
+            line-height: 1.5;
         }
 
         .tooltip-word:hover .tooltip-box {
@@ -178,21 +191,21 @@
             position: absolute;
             top: 100%;
             left: 50%;
-            margin-left: -10px;
-            border-width: 10px;
+            margin-left: -8px;
+            border-width: 8px;
             border-style: solid;
-            border-color: var(--accent-1) transparent transparent transparent;
+            border-color: var(--color-1) transparent transparent transparent;
         }
 
-        /* Side Navigation Dots */
+        /* Oldalsó navigáció */
         .side-nav {
             position: fixed;
-            right: 30px;
+            right: 25px;
             top: 50%;
             transform: translateY(-50%);
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             z-index: 50;
         }
 
@@ -200,82 +213,66 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            border: 2px solid var(--text-main);
+            border: 2px solid rgba(247, 181, 56, 0.5);
             background: transparent;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .nav-dot.active {
-            background: var(--accent-1);
-            border-color: var(--accent-1);
-            box-shadow: 0 0 10px var(--accent-1);
-            transform: scale(1.3);
+            background: var(--color-5);
+            border-color: var(--color-5);
+            box-shadow: 0 0 12px var(--color-4);
+            transform: scale(1.4);
         }
 
-        /* Scroll Indicator */
+        /* Görgetés jelző */
         .scroll-down {
             position: absolute;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             flex-direction: column;
             align-items: center;
-            opacity: 0.7;
+            opacity: 0.6;
             animation: pulse 2s infinite;
         }
 
-        .scroll-down span { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-        .mouse { width: 24px; height: 36px; border: 2px solid #fff; border-radius: 12px; position: relative; }
-        .wheel { width: 4px; height: 8px; background: #fff; border-radius: 2px; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); animation: scrollWheel 1.5s infinite; }
+        .scroll-down span { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; color: var(--color-5); }
+        .mouse { width: 22px; height: 34px; border: 2px solid var(--color-5); border-radius: 12px; position: relative; }
+        .wheel { width: 4px; height: 8px; background: var(--color-5); border-radius: 2px; position: absolute; top: 6px; left: 50%; transform: translateX(-50%); animation: scrollWheel 1.5s infinite; }
 
-        @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
-        @keyframes scrollWheel { 0% { transform: translate(-50%, 0); opacity: 1; } 100% { transform: translate(-50%, 15px); opacity: 0; } }
+        @keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+        @keyframes scrollWheel { 0% { transform: translate(-50%, 0); opacity: 1; } 100% { transform: translate(-50%, 12px); opacity: 0; } }
 
-        /* Citations & Links */
-        .cite {
-            font-size: 0.75rem;
-            vertical-align: super;
-            color: var(--accent-2);
-        }
-
+        /* Hivatkozások formázása */
         .references ul {
             list-style: none;
-            text-align: left;
-            max-height: 50vh;
-            overflow-y: auto;
             padding-right: 15px;
         }
+        .references li { margin-bottom: 12px; font-size: 0.9rem; border-left: 3px solid var(--color-2); padding-left: 15px; background: rgba(0,0,0,0.2); padding-top: 8px; padding-bottom: 8px;}
+        .references a { color: var(--text-main); text-decoration: none; transition: color 0.3s; word-break: break-all;}
+        .references a:hover { color: var(--color-5); }
+        .ref-number { color: var(--color-4); font-weight: bold; margin-right: 5px; }
 
-        .references ul::-webkit-scrollbar { width: 6px; }
-        .references ul::-webkit-scrollbar-track { background: rgba(255,255,255,0.1); border-radius: 10px; }
-        .references ul::-webkit-scrollbar-thumb { background: var(--accent-1); border-radius: 10px; }
-
-        .references li { margin-bottom: 15px; font-size: 0.95rem; border-left: 3px solid var(--accent-3); padding-left: 15px; }
-        .references a { color: var(--text-light); text-decoration: none; transition: color 0.3s; }
-        .references a:hover { color: var(--accent-1); }
-        .ref-number { color: var(--accent-1); font-weight: bold; margin-right: 5px; }
-
-        /* Responsive */
         @media (max-width: 900px) {
-            .container { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-            .glass-card { padding: 25px; }
+            .two-cols { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+            .text-panel { padding: 25px; max-height: 85vh; }
             .side-nav { display: none; }
+            p { font-size: 0.95rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Background Animation -->
     <div class="bg-shapes">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
 
-    <!-- Right Side Navigation -->
     <div class="side-nav">
         <div class="nav-dot active" onclick="scrollToSection(0)"></div>
         <div class="nav-dot" onclick="scrollToSection(1)"></div>
@@ -285,139 +282,143 @@
         <div class="nav-dot" onclick="scrollToSection(5)"></div>
     </div>
 
-    <!-- SECTION 1: HERO -->
     <section id="sec-0" class="observe-me">
-        <div class="container">
+        <div class="container two-cols">
             <div>
-                <h1>Genetika <span>&</span> Környezet</h1>
-                <p>A klasszikus „öröklődés vagy környezet” vita a modern tudományban immár elavultnak számít. A mai konszenzus szerint az intelligencia a kettő folyamatos, dinamikus kölcsönhatásának eredménye.<span class="cite">[5]</span></p>
-                <p>Görgess lefele a digitális jelentés megtekintéséhez.</p>
+                <h1>Öröklődés <span>vagy</span> Környezet?</h1>
+                <p style="font-size: 1.2rem; font-weight: 300; color: var(--color-5);">A tudományos konszenzus megváltozott.</p>
             </div>
-            <div class="glass-card">
-                <span class="stat-number">50%</span>
-                <h3>Átlagos Örökölhetőség</h3>
-                <p>A popuáción belüli különbségek fele a genetikai varianciára vezethető vissza. A gének azonban csak a potenciált adják: az optimális környezet kell a 
-                <span class="tooltip-word">felső határ
-                    <span class="tooltip-box">A genetikai képességek maximuma, amelyet csak megfelelő környezeti stimuláció és támogatás esetén érhet el az egyén.</span>
+            <div class="text-panel">
+                <span class="stat-number">~50%</span>
+                <p>A klasszikus „öröklődés vagy környezet" (nature vs. nurture) vita a modern tudományban immár elavultnak számít. A mai konszenzus szerint az intelligencia a genetika és a környezet folyamatos, dinamikus kölcsönhatásának eredménye.</p>
+                <p>Noha az intelligencia átlagos 
+                <span class="tooltip-word">örökölhetősége (heritabilitása)
+                    <span class="tooltip-box">A populáción belüli különbségek megfigyelt varianciája, amely a genetikai különbségekre vezethető vissza.</span>
                 </span> 
-                eléréséhez.</p>
+                körülbelül 50%-ra tehető - ami azt jelenti, hogy egy adott populáción belüli különbségek fele a genetikai varianciára vezethető vissza -, ez nem teszi másodlagossá a környezet szerepét.</p>
+                <p>A gének csupán a fejlődés alapvető kereteit és potenciálját határozzák meg, míg az optimális környezeti feltételek elengedhetetlenek ahhoz, hogy a gyermekek valóban elérhessék genetikai képességeik felső határát.</p>
             </div>
         </div>
-        <div class="scroll-down">
-            <span>Görgetés</span>
-            <div class="mouse"><div class="wheel"></div></div>
-        </div>
+        <div class="scroll-down"><span>Görgetés</span><div class="mouse"><div class="wheel"></div></div></div>
     </section>
 
-    <!-- SECTION 2: MOLECULAR GENETICS -->
     <section id="sec-1" class="observe-me">
         <div class="container">
-            <div class="glass-card">
-                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2366fcf1' stroke-width='1.5'><path d='M2 12h4l3-9 5 18 3-9h5'/></svg>" width="60" height="60" alt="DNA wave">
-                <h3 style="margin-top: 15px; font-size: 1.5rem;">A Normál Tartomány</h3>
-                <p>Az intelligencia rendkívül 
+            <div class="text-panel" style="max-width: 1000px; margin: 0 auto; border-left-color: var(--color-3);">
+                <h2>A Molekuláris Kép</h2>
+                <p>A molekuláris genetika rávilágított arra, hogy a normál tartományban lévő intelligencia rendkívül 
                 <span class="tooltip-word">poligénes
-                    <span class="tooltip-box">Több ezer, egyenként csupán apró hatású gyakori génváltozat (SNP) együttesen alakítja ki a tulajdonságot.</span>
+                    <span class="tooltip-box">Olyan tulajdonság, amelynek kialakításában sok (akár több ezer) gén vesz részt, egyenként apró hatással.</span>
                 </span> 
-                tulajdonság. A poligénes pontszámok (PGI) ma már a variancia több mint 10%-át képesek előre jelezni.</p>
-            </div>
-            <div>
-                <h2>Molekuláris Kép</h2>
-                <p>Az új szekvenálási eljárások kimutatták, hogy a ritka, káros mutációk felhalmozódása drasztikusan és aszimmetrikusan befolyásolja a kognitív képességek eloszlásának legalsó tartományát.</p>
-                <p>Ezek negatív hatásai különösen a korai gyermekkori neurofejlődés során dominánsak.</p>
+                tulajdonság: több ezer, egyenként csupán apró hatású gyakori génváltozat (SNP) együttesen alakítja ki.</p>
+                <p>Ezen változatok statisztikai összegzésével létrehozott úgynevezett poligénes pontszámok (PGI) ma már a független populációk intelligenciájában és iskolai végzettségében mutatkozó variancia több mint 10%-át képesek előre jelezni.</p>
+                <p>Ezzel párhuzamosan az új szekvenálási eljárások kimutatták, hogy a ritka, káros mutációk felhalmozódása (deleterious rare variant burden) drasztikusan és aszimmetrikusan befolyásolja a kognitív képességek eloszlásának legalsó tartományát, amelynek negatív hatásai különösen a korai gyermekkori neurofejlődés során dominánsak.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: WILSON EFFECT -->
     <section id="sec-2" class="observe-me">
-        <div class="container">
-            <div>
-                <h2>A <span class="tooltip-word">Wilson-effektus<span class="tooltip-box">A genetikai meghatározottság csecsemőkortól felnőttkorba lépve folyamatosan növekszik az aktív gén-környezet korreláció miatt.</span></span></h2>
-                <p>A heritabilitás dinamikája az életkor előrehaladtával meglepő mintázatot követ. Ahogy a gyermekek növekednek és autonómmá válnak, elkezdenek olyan közeget választani, amely illeszkedik a genetikájukhoz.<span class="cite">[12]</span></p>
+        <div class="container two-cols">
+            <div class="text-panel" style="border-left-color: var(--color-2);">
+                <h2>Az Idő Dinamikája</h2>
+                <p>A heritabilitás dinamikája az életkor előrehaladtával meglepő mintázatot követ: az intelligencia genetikai meghatározottsága a csecsemőkortól a felnőttkorba lépve folyamatosan növekszik, amit a szakirodalom 
+                <span class="tooltip-word">Wilson-effektusként
+                    <span class="tooltip-box">Az a jelenség, mely során az IQ örökölhetősége az életkorral nő, mert az egyén aktívan a genetikájához illő környezetet választ.</span>
+                </span> 
+                tart számon.</p>
+                <p>Ennek hátterében az aktív gén-környezet korreláció áll. Ahogy a gyermekek növekednek és egyre autonómmá válnak, elkezdenek olyan szellemi kihívásokat, oktatási és szociális közeget választani - vagy éppen megteremteni -, amelyek szorosan illeszkednek a genetikailag kódolt hajlamaikhoz.</p>
             </div>
-            <div class="glass-card" style="text-align: center;">
-                <h3 style="font-size: 1.2rem; color: var(--accent-2);">Örökölhetőségi arány fiatal felnőttkorra</h3>
-                <span class="stat-number" style="font-size: 6rem; margin: 20px 0;">80%</span>
-                <p>A felnőttkori, aktívan szelektált környezet felnagyítja és megerősíti a velünk született adottságokat.</p>
+            <div class="text-panel" style="text-align: center; border-left-color: var(--color-5); display: flex; flex-direction: column; justify-content: center;">
+                <span class="stat-number" style="font-size: 6rem; margin: 0;">Akár 80%</span>
+                <h3 style="color: var(--color-4); margin: 15px 0;">Örökölhetőség fiatal felnőttkorra</h3>
+                <p style="text-align: center;">Ez a felnőttkori, aktívan szelektált környezet felnagyítja és megerősíti a velünk született adottságokat, ami fiatal felnőttkorra akár 80%-os örökölhetőségi arányt is eredményezhet. A genetikai képességek kibontakozását ugyanakkor szigorúan gátolhatják a környezeti tényezők.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 4: SCARR-ROWE & EDUCATION -->
     <section id="sec-3" class="observe-me">
         <div class="container">
-            <div class="glass-card">
-                <h2>Oktatás és Társadalom</h2>
+            <div class="text-panel" style="border-left-color: var(--color-1);">
+                <h2>Társadalom és Iskolarendszerek</h2>
                 <p>A 
                 <span class="tooltip-word">Scarr-Rowe-hipotézis
-                    <span class="tooltip-box">Súlyos társadalmi-gazdasági (SES) hátrányok esetén a kognitív különbségeket a környezet magyarázza, a genetika minimális.</span>
-                </span>
-                megmutatja, hogyan fojthatja el a környezet a genetikát.<span class="cite">[13]</span></p>
-                <div style="display: flex; justify-content: space-between; margin-top: 20px; text-align: left; gap: 20px;">
+                    <span class="tooltip-box">Az az elmélet, mely szerint hátrányos helyzetben a genetikai potenciál nem tud kibontakozni, így a különbségeket a környezet okozza.</span>
+                </span> 
+                rámutat, hogy súlyos társadalmi-gazdasági (SES) hátrányok esetén a kognitív különbségek inkább a korlátozó környezeti tényezőkkel magyarázhatók, a genetikai variancia pedig minimálisra csökken. A társadalmi makrokörnyezet és az iskolarendszerek felépítése drasztikusan befolyásolja ezt a kölcsönhatást.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 20px 0; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
                     <div>
-                        <h4 style="color: var(--accent-1); margin-bottom: 10px;">Angolszász modell</h4>
-                        <p style="font-size: 0.9rem;">Korai szétválasztás (tracking). A családi háttér erősen meghatározó.</p>
+                        <h4 style="color: var(--color-3); margin-bottom: 10px;">Angolszász Rendszerek</h4>
+                        <p style="font-size: 0.95rem;">(pl. USA, Egyesült Királyság) Jellemzően a képességek szerinti korai szétválasztásra (tracking) és a tehetségek egyéni fejlesztésére helyezik a hangsúlyt. Ezekben a társadalmakban erősen érvényesül a Scarr-Rowe-effektus, és a családi háttér nagymértékben meghatározza az eredményeket.</p>
                     </div>
                     <div>
-                        <h4 style="color: var(--accent-3); margin-bottom: 10px;">Skandináv modell</h4>
-                        <p style="font-size: 0.9rem;">Átfogó oktatás. Az esélyegyenlőség növeli a genetika szerepét.</p>
+                        <h4 style="color: var(--color-5); margin-bottom: 10px;">Skandináv Modell</h4>
+                        <p style="font-size: 0.95rem;">(pl. finn vagy svéd rendszer) A későbbi szelekcióra és az esélyegyenlőséget biztosító átfogó (comprehensive) iskolatípusra épít. A skandináv típusú robusztus jóléti beavatkozások szinte teljesen eltüntetik a Scarr-Rowe-effektust.</p>
                     </div>
                 </div>
-            </div>
-            <div style="padding-left: 30px;">
-                <span class="stat-number" style="font-size: 4rem;">+1-5 IQ Pont</span>
-                <p>A formális oktatás a kognitív képességek fejlesztésének egyik legbiztosabb oki mechanizmusa minden eltöltött évvel.<span class="cite">[15]</span></p>
+
+                <p>Paradox módon tehát az esélyegyenlőség megteremtése - ahogy azt az 1970-es évek történelmi finn oktatási reformja is igazolta - statisztikailag növeli az iskolai teljesítmény örökölhetőségét, mivel a mesterséges környezeti akadályok lebontásával a gyermekek közötti különbségeket immár egyre inkább a szabadon kibontakozó genetikai adottságok határozzák meg.</p>
+                <p style="color: var(--color-5); font-weight: bold; font-size: 1.15rem; text-align: center; margin-top: 20px;">Összességében a formális oktatás a kognitív képességek fejlesztésének egyik legbiztosabb oki mechanizmusa: minden oktatásban eltöltött év 1-5 ponttal képes megnövelni az intelligenciahányadost.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: EPIGENETICS -->
     <section id="sec-4" class="observe-me">
-        <div class="container full-width">
-            <h2>Flynn-effektus és Epigenetika</h2>
-            <div class="glass-card" style="max-width: 800px; margin: 0 auto; text-align: left;">
-                <p>A <span class="tooltip-word">Flynn-effektus<span class="tooltip-box">A kognitív tesztpontszámok generációs növekedése (vagy megfordulása) az életkörülmények változásával, genetikai módosulás nélkül.</span></span> igazolja a makrokörnyezet erejét.<span class="cite">[18]</span></p>
-                <p>Az <strong>epigenetika</strong> (pl. DNS-metiláció) feltárta a molekuláris hidat: a környezeti és társadalmi behatások kémiailag szabályozzák a memóriáért és gondolkodásért felelős génjeink aktivitását. Biológiánk fizikailag reagál az élettapasztalatainkra.<span class="cite">[21]</span></p>
+        <div class="container">
+            <div class="text-panel" style="max-width: 900px; margin: 0 auto; border-left-color: var(--color-4);">
+                <h2>Generációk és Biológiai Hidak</h2>
+                <p>A populációs szintű környezeti folyamatok erejét igazolja a 
+                <span class="tooltip-word">Flynn-effektus
+                    <span class="tooltip-box">A 20. században megfigyelt folyamatos és jelentős növekedés a generációk átlagos intelligenciahányadosában.</span>
+                </span>, 
+                és annak jelenkori megfordulása is: az életkörülmények, a táplálkozás és a tömegoktatás változásai a genetikai állomány módosulása nélkül is drasztikusan - akár testvéreken belül is - módosítják egy generáció kognitív tesztpontszámait.</p>
+                
+                <p>Az 
+                <span class="tooltip-word">epigenetika
+                    <span class="tooltip-box">Azon mechanizmusok vizsgálata (pl. DNS-metiláció), amelyek a DNS szekvenciájának megváltoztatása nélkül befolyásolják a génkifejeződést.</span>
+                </span> 
+                (például a DNS-metiláció vizsgálata) mára azt a fizikai és molekuláris hidat is kezdi feltárni, amelyen keresztül a minket érő környezeti és társadalmi behatások kémiailag szabályozzák a memóriáért és gondolkodásért felelős génjeink aktivitását, bizonyítva, hogy a biológiánk rendkívül érzékenyen és strukturálisan reagál az élettapasztalatainkra.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 6: REFERENCES -->
     <section id="sec-5" class="observe-me">
-        <div class="container full-width references">
-            <h2>Felhasznált Hivatkozások</h2>
-            <div class="glass-card" style="max-width: 1000px; margin: 0 auto;">
+        <div class="container references">
+            <div class="text-panel" style="border-left-color: var(--color-1);">
+                <h2>Felhasznált Szakirodalom</h2>
                 <ul>
-                    <li><span class="ref-number">5.</span> <a href="https://bns.institute/behavioural-sciences/heredity-environment-intelligence-determinants/" target="_blank">Heredity and Environment: Determinants of Intelligence - BNS Institute</a></li>
-                    <li><span class="ref-number">12.</span> <a href="https://www.cambridge.org/core/journals/twin-research-and-human-genetics/article/wilson-effect-the-increase-in-heritability-of-iq-with-age/FF406CC4CF286D78AF72C9E7EF9B5E3F" target="_blank">The Wilson Effect: The Increase in Heritability of IQ With Age</a></li>
+                    <li><span class="ref-number">1.</span> <a href="https://en.wikipedia.org/wiki/Heritability_of_IQ" target="_blank">Heritability of IQ - Wikipedia</a></li>
+                    <li><span class="ref-number">2.</span> <a href="https://www1.udel.edu/educ/gottfredson/reprints/1997mainstream.pdf" target="_blank">Mainstream Science on Intelligence</a></li>
+                    <li><span class="ref-number">3.</span> <a href="https://resolve.cambridge.org/core/services/aop-cambridge-core/content/view/CFB3520BFB08FA955F2150BA776EDE27/9780511807947c4_p53-91_CBO.pdf/heritability_and_intelligence.pdf" target="_blank">HERITABILITY AND INTELLIGENCE - Cambridge Univ. Press</a></li>
+                    <li><span class="ref-number">4.</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5985927/" target="_blank">The new genetics of intelligence - PMC</a></li>
+                    <li><span class="ref-number">5.</span> <a href="https://bns.institute/behavioural-sciences/heredity-environment-intelligence-determinants/" target="_blank">Heredity and Environment: Determinants of Intelligence - BNS</a></li>
+                    <li><span class="ref-number">6.</span> <a href="https://www.cambridge.org/core/books/cambridge-handbook-of-intelligence-and-cognitive-neuroscience/how-intelligence-research-can-inform-education-and-public-policy/51E5A6370526D3AEAB9834325254B26C" target="_blank">How Intelligence Research Can Inform Education</a></li>
+                    <li><span class="ref-number">7.</span> <a href="https://sociologicalscience.com/download/vol_11/march/SocSci_v11_186to213.pdf" target="_blank">Educational tracking and polygenic prediction</a></li>
+                    <li><span class="ref-number">8.</span> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12416016/" target="_blank">The Genetics of Intelligence - PMC</a></li>
+                    <li><span class="ref-number">12.</span> <a href="https://www.cambridge.org/core/journals/twin-research-and-human-genetics/article/wilson-effect-the-increase-in-heritability-of-iq-with-age/FF406CC4CF286D78AF72C9E7EF9B5E3F" target="_blank">The Wilson Effect</a></li>
                     <li><span class="ref-number">13.</span> <a href="https://en.wikipedia.org/wiki/Scarr%E2%80%93Rowe_effect" target="_blank">Scarr-Rowe effect - Wikipedia</a></li>
-                    <li><span class="ref-number">15.</span> <a href="https://fearlesspsychology.wordpress.com/2018/06/25/a-study-on-half-a-million-people-shows-education-improves-iq/" target="_blank">A Study on Half a Million People Shows Education Improves IQ</a></li>
-                    <li><span class="ref-number">18.</span> <a href="https://acisiq.com/the-flynn-effect-explained" target="_blank">Flynn Effect Explained: IQ Gains, Reversal & Norms</a></li>
-                    <li><span class="ref-number">21.</span> <a href="https://www.cogn-iq.org/blog/epigenetics-and-intelligence/" target="_blank">Epigenetics and Intelligence: How Environment Shapes IQ</a></li>
+                    <li><span class="ref-number">15.</span> <a href="https://fearlesspsychology.wordpress.com/2018/06/25/a-study-on-half-a-million-people-shows-education-improves-iq/" target="_blank">Study on Half a Million People Shows Education Improves IQ</a></li>
+                    <li><span class="ref-number">18.</span> <a href="https://acisiq.com/the-flynn-effect-explained" target="_blank">Flynn Effect Explained</a></li>
+                    <li><span class="ref-number">21.</span> <a href="https://www.cogn-iq.org/blog/epigenetics-and-intelligence/" target="_blank">Epigenetics and Intelligence</a></li>
                 </ul>
             </div>
         </div>
     </section>
 
     <script>
-        // Intersection Observer for animations and active side navigation
         const sections = document.querySelectorAll('section');
         const navDots = document.querySelectorAll('.nav-dot');
 
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.5 // Trigger when 50% of the section is visible
+            threshold: 0.5 
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Add animation class
                     entry.target.classList.add('in-view');
-                    
-                    // Update dots
                     const index = Array.from(sections).indexOf(entry.target);
                     navDots.forEach(dot => dot.classList.remove('active'));
                     if (navDots[index]) {
@@ -431,7 +432,6 @@
             observer.observe(section);
         });
 
-        // Function to scroll to specific section on dot click
         function scrollToSection(index) {
             sections[index].scrollIntoView({ behavior: 'smooth' });
         }
