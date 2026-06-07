@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Az Intelligencia Örökölhetősége</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --bg: #ecf0f1;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .content {
+            padding: 30px;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide h2 {
+            color: var(--secondary);
+            border-bottom: 2px solid var(--bg);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        /* Tooltip stílusok */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            color: var(--accent);
+            font-weight: bold;
+            border-bottom: 1px dotted var(--accent);
+            cursor: help;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 250px;
+            background-color: var(--primary);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+            font-weight: normal;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            line-height: 1.4;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--primary) transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Navigáció */
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+
+        button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        button:disabled {
+            background-color: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .progress {
+            display: flex;
+            gap: 5px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            background-color: #bdc3c7;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--secondary);
+        }
+
+        a.cite-link {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.85em;
+            vertical-align: super;
+        }
+        
+        a.cite-link:hover {
+            text-decoration: underline;
+        }
+
+        .ref-list {
+            list-style: none;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        .ref-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .ref-list a {
+            color: var(--secondary);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .ref-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Az Intelligencia Örökölhetősége</h1>
+        <p style="margin: 5px 0 0; font-size: 0.9rem;">Genetika, környezet és kölcsönhatásuk modern értelmezése</p>
+    </div>
+
+    <div class="content">
+        <div class="slide active" id="slide-0">
+            <h2>Genetika és Környezet: Az Alapok</h2>
+            <p>A klasszikus „öröklődés vagy környezet" vita a modern tudományban immár elavultnak számít[cite: 1]. A mai konszenzus szerint az intelligencia a genetika és a környezet folyamatos, dinamikus kölcsönhatásának eredménye[cite: 2].</p>
+            <p>Noha az intelligencia átlagos <span class="tooltip">örökölhetősége<span class="tooltiptext">Heritabilitás: egy adott populáción belüli különbségek fele a genetikai varianciára vezethető vissza.</span></span> körülbelül 50%-ra tehető, ez nem teszi másodlagossá a környezet szerepét[cite: 3]. A gének csupán a fejlődés alapvető kereteit és potenciálját határozzák meg, míg az optimális környezeti feltételek elengedhetetlenek ahhoz, hogy a gyermekek elérhessék genetikai képességeik felső határát[cite: 4].</p>
+            <p>A molekuláris genetika rávilágított arra, hogy az intelligencia egy <span class="tooltip">poligénes tulajdonság<span class="tooltiptext">Több ezer, egyenként apró hatású gyakori génváltozat (SNP) együttesen alakítja ki.</span></span>[cite: 5]. Ezek statisztikai összegzésével létrehozott úgynevezett poligénes pontszámok (PGI) ma már a variancia több mint 10%-át képesek előre jelezni[cite: 6]. A ritka mutációk drasztikusan befolyásolják a kognitív képességek legalsó tartományát[cite: 7].</p>
+        </div>
+
+        <div class="slide" id="slide-1">
+            <h2>Az Idő Múlása: A Wilson-effektus</h2>
+            <p>A heritabilitás dinamikája az életkor előrehaladtával meglepő mintázatot követ: a genetikai meghatározottság csecsemőkortól felnőttkorba lépve folyamatosan növekszik. Ezt a jelenséget <span class="tooltip">Wilson-effektusként<span class="tooltiptext">Az intelligencia genetikai meghatározottságának növekedése az idő előrehaladtával, az aktív gén-környezet korreláció miatt.</span></span> tartja számon a szakirodalom[cite: 8].</p>
+            <p>Ennek hátterében az áll, hogy ahogy a gyermekek autonómmá válnak, elkezdenek a genetikailag kódolt hajlamaikhoz illeszkedő szellemi, oktatási közeget választani[cite: 9]. Ez a felnőttkori, aktívan szelektált környezet felnagyítja a velünk született adottságokat, és akár 80%-os örökölhetőségi arányt is eredményezhet[cite: 10].</p>
+            <p>A genetikai képességek kibontakozását ugyanakkor szigorúan gátolhatják a környezeti tényezők[cite: 11].</p>
+        </div>
+
+        <div class="slide" id="slide-2">
+            <h2>Társadalom és Oktatás</h2>
+            <p>A <span class="tooltip">Scarr-Rowe-hipotézis<span class="tooltiptext">Elmélet, mely szerint súlyos társadalmi-gazdasági (SES) hátrányok esetén a kognitív különbségeket a környezet magyarázza, a genetikai variancia minimális.</span></span> rámutat, hogy társadalmi-gazdasági hátrányok esetén a kognitív különbségek a korlátozó környezettel magyarázhatók[cite: 12]. Az iskolarendszerek felépítése drasztikusan befolyásolja ezt[cite: 13].</p>
+            <p>Az angolszász rendszerekben a korai szétválasztás (tracking) miatt erősen érvényesül a Scarr-Rowe-effektus[cite: 14, 15]. Ezzel szemben a skandináv modell esélyegyenlőséget biztosító átfogó rendszere szinte teljesen eltünteti azt[cite: 16, 17]. Paradox módon az esélyegyenlőség megteremtése növeli az iskolai teljesítmény örökölhetőségét, mert az akadályok lebontásával a különbségeket egyre inkább a genetika határozza meg[cite: 18].</p>
+            <p>A formális oktatás az egyik legbiztosabb mechanizmus: minden oktatásban eltöltött év 1-5 ponttal képes megnövelni az intelligenciahányadost[cite: 19, 20].</p>
+        </div>
+
+        <div class="slide" id="slide-3">
+            <h2>Generációk és Biológia</h2>
+            <p>A környezeti folyamatok erejét igazolja a <span class="tooltip">Flynn-effektus<span class="tooltiptext">Az életkörülmények javulása és a tömegoktatás genetikai változás nélkül is drasztikusan módosítják a generációk kognitív tesztpontszámait.</span></span> és annak jelenkori megfordulása is[cite: 21].</p>
+            <p>Végül, az <span class="tooltip">epigenetika<span class="tooltiptext">Olyan kémiai folyamat (pl. DNS-metiláció), amelyen keresztül a társadalmi behatások szabályozzák génjeink aktivitását.</span></span> (például a DNS-metiláció vizsgálata) feltárja azt a molekuláris hidat, amelyen keresztül a minket érő behatások kémiailag szabályozzák a memóriáért és gondolkodásért felelős génjeink aktivitását[cite: 22]. Ez bizonyítja, hogy a biológiánk rendkívül érzékenyen és strukturálisan reagál az élettapasztalatainkra[cite: 23].</p>
+        </div>
+
+        <div class="slide" id="slide-4">
+            <h2>Felhasznált Szakirodalom</h2>
+            <ul class="ref-list">
+                <li><strong>[cite: 25]</strong> <a href="https://en.wikipedia.org/wiki/Heritability_of_IQ" target="_blank">Heritability of IQ - Wikipedia</a></li>
+                <li><strong>[cite: 26]</strong> <a href="https://www1.udel.edu/educ/gottfredson/reprints/1997mainstream.pdf" target="_blank">Mainstream Science on Intelligence</a></li>
+                <li><strong>[cite: 29]</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5985927/" target="_blank">The new genetics of intelligence - PMC</a></li>
+                <li><strong>[cite: 34]</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12416016/" target="_blank">The Genetics of Intelligence - PMC</a></li>
+                <li><strong>[cite: 40]</strong> <a href="https://www.cambridge.org/core/journals/twin-research-and-human-genetics/article/wilson-effect-the-increase-in-heritability-of-iq-with-age/FF406CC4CF286D78AF72C9E7EF9B5E3F" target="_blank">The Wilson Effect: The Increase in Heritability of IQ With Age</a></li>
+                <li><strong>[cite: 42]</strong> <a href="https://en.wikipedia.org/wiki/Scarr%E2%80%93Rowe_effect" target="_blank">Scarr-Rowe effect - Wikipedia</a></li>
+                <li><strong>[cite: 46]</strong> <a href="https://fearlesspsychology.wordpress.com/2018/06/25/a-study-on-half-a-million-people-shows-education-improves-iq/" target="_blank">A Study on Half a Million People Shows Education Improves IQ</a></li>
+                <li><strong>[cite: 53]</strong> <a href="https://en.wikipedia.org/wiki/Flynn_effect" target="_blank">Flynn effect - Wikipedia</a></li>
+                <li><strong>[cite: 54]</strong> <a href="https://www.cogn-iq.org/blog/epigenetics-and-intelligence/" target="_blank">Epigenetics and Intelligence: How Environment Shapes IQ</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Vissza</button>
+        <div class="progress" id="progressDots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+        <button id="nextBtn" onclick="changeSlide(1)">Tovább</button>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function changeSlide(direction) {
+        // Jelenlegi slide elrejtése
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        
+        // Új index kiszámítása
+        currentSlide += direction;
+        
+        // Új slide megjelenítése
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+        
+        // Gombok állapotának frissítése
+        prevBtn.disabled = currentSlide === 0;
+        
+        if (currentSlide === slides.length - 1) {
+            nextBtn.disabled = true;
+        } else {
+            nextBtn.disabled = false;
+        }
+    }
+</script>
+
+</body>
+</html>
